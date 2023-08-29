@@ -4,7 +4,7 @@ import { computed } from 'vue';
 import { useLayout } from 'vuetify';
 
 const { mainStyles } = useLayout();
-const marginTop = mainStyles.value['--v-layout-top'];
+// const marginTop = mainStyles.value['--v-layout-top'];
 const maxHeight = computed(
   () => `calc(100vh - ${mainStyles.value['--v-layout-top']})`
 );
@@ -55,11 +55,11 @@ onMounted(async () => {
 
 <template>
   <v-navigation-drawer
-    permanent
+    parmanent
     location="right"
     border="none"
     class="position-sticky"
-    :style="{ maxHeight }"
+    :style="{ maxHeight, minWidth }"
     style="height: fit-content"
     width="250"
   >

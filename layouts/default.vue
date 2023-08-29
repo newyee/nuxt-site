@@ -49,9 +49,9 @@ useSeoMeta({
 <template>
   <v-app>
     <Header />
-    <div class="d-flex flex-0-1-100">
+    <div class="d-flex flex-0-1-100 main-content">
       <SideMenu />
-      <v-main class="pl-0 pr-0">
+      <v-main class="pl-0 pr-0 flex-shrink-1">
         <v-container>
           <slot />
           <NavigationLink />
@@ -69,6 +69,12 @@ useSeoMeta({
   border-left: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
 }
+
+.main-content {
+  width: 1190px;
+  margin: 0 auto;
+}
+
 video {
   width: 100%;
 }
