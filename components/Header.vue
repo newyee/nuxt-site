@@ -15,6 +15,22 @@ import type { AlgoliaSearchHelper } from 'algoliasearch-helper';
 const algolia = useAlgoliaRef();
 const { locale, setLocale } = useI18n();
 
+const drawer = ref(true);
+const shouldShowDrawer = ref(false);
+
+// ウィンドウ幅が1023px未満の場合にナビゲーションドロワーを非表示にする
+const handleResize = () => {
+  shouldShowDrawer.value = window.innerWidth <= 1023;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+  handleResize();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
 let indexName = '';
 
 switch (locale.value) {
@@ -61,6 +77,10 @@ function onDocumentKeydown(e: KeyboardEvent) {
 
 <template>
   <v-app-bar border="b" flat>
+    <v-app-bar-nav-icon
+      variant="text"
+      v-if="shouldShowDrawer"
+    ></v-app-bar-nav-icon>
     <AppThemeToggle />
     <AppLanguageMenu />
     <v-dialog
