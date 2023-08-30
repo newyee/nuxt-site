@@ -28,7 +28,7 @@ const panel = matchedNavObject.children.findIndex((item: { _path: string }) =>
 <template>
   <client-only>
     <v-navigation-drawer
-      parmanent
+      permanent
       border="none"
       class="position-sticky"
       :style="{ maxHeight, marginTop, minWidth }"

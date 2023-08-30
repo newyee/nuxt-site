@@ -55,7 +55,7 @@ onMounted(async () => {
 
 <template>
   <v-navigation-drawer
-    parmanent
+    permanent
     location="right"
     border="none"
     class="position-sticky"

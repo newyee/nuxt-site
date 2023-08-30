@@ -78,4 +78,10 @@ useSeoMeta({
 video {
   width: 100%;
 }
+header {
+  width: 100%;
+}
+footer {
+  width: 100%;
+}
 </style>
