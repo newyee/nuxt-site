@@ -2,6 +2,22 @@
 const route = useRoute();
 const { baseUrl } = useRuntimeConfig().public;
 const { locale } = useI18n();
+const shouldShowDrawer = ref(false);
+const mobileLayout = ref(false);
+
+const handleResize = () => {
+  shouldShowDrawer.value = window.innerWidth >= 1023;
+  mobileLayout.value = window.innerWidth <= 1023;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+  handleResize();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
 
 let redirectPath = route.path.endsWith('/')
   ? route.path.slice(0, -1)
@@ -49,15 +65,16 @@ useSeoMeta({
 <template>
   <v-app>
     <Header />
+    <ResponsiveTableOfContents v-if="mobileLayout"></ResponsiveTableOfContents>
     <div class="d-flex flex-0-1-100 main-content">
-      <SideMenu />
+      <SideMenu v-if="shouldShowDrawer" />
       <v-main class="pl-0 pr-0 flex-shrink-1">
         <v-container>
           <slot />
           <NavigationLink />
         </v-container>
       </v-main>
-      <TableofContents />
+      <TableofContents v-if="shouldShowDrawer" />
     </div>
     <Footer />
   </v-app>
