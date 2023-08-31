@@ -1,14 +1,24 @@
 # start a project
 
-1. Keep your .env in sync with .env.example
+1. Navigate to the cloned directory
 
-2. Install the dependency
+```
+cd nuxt-site
+```
+
+2. Copy the example environment file
+
+```
+cp .env.example .env
+```
+
+3. Install dependencies
 
 ```
 npm install
 ```
 
-3. Development
+4. Run the development server
 
 ```
 npm run dev
