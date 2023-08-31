@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { algoliasearch } from 'algoliasearch';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, provide } from 'vue';
 import { onBeforeRouteLeave, useRoute } from 'vue-router';
 import {
   AisInstantSearch,
@@ -10,7 +10,16 @@ import {
 } from 'vue-instantsearch/vue3/es/index.js';
 import { mdiMagnify, mdiClose } from '@mdi/js';
 import { useDisplay } from 'vuetify';
-import type { AlgoliaSearchHelper } from 'algoliasearch-helper';
+// import type { AlgoliaSearchHelper } from 'algoliasearch-helper';
+
+const drawerClicked = ref(false);
+
+const handleDrawerClick = () => {
+  drawerClicked.value = !drawerClicked.value;
+  console.log('test');
+};
+
+provide('drawerClicked', drawerClicked);
 
 const algolia = useAlgoliaRef();
 const { locale, setLocale } = useI18n();
@@ -59,9 +68,9 @@ onBeforeRouteLeave(() => {
   searchModalIsVisible.value = false;
 });
 
-function searchFunction(helper: AlgoliaSearchHelper) {
-  if (helper.state.query) helper.search();
-}
+// function searchFunction(helper: AlgoliaSearchHelper) {
+//   if (helper.state.query) helper.search();
+// }
 
 function onDocumentKeydown(e: KeyboardEvent) {
   if (!searchModalIsVisible.value && e.ctrlKey && e.key === 'k') {
@@ -80,6 +89,7 @@ function onDocumentKeydown(e: KeyboardEvent) {
     <v-app-bar-nav-icon
       variant="text"
       v-if="shouldShowDrawer"
+      @click="handleDrawerClick()"
     ></v-app-bar-nav-icon>
     <AppThemeToggle />
     <AppLanguageMenu />
@@ -134,7 +144,7 @@ function onDocumentKeydown(e: KeyboardEvent) {
           variant="filled"
         />
 
-        <v-card-text class="pa-4">
+        <!-- <v-card-text class="pa-4">
           <ais-instant-search
             :search-client="algolia"
             :search-function="searchFunction"
@@ -152,8 +162,8 @@ function onDocumentKeydown(e: KeyboardEvent) {
               </template>
             </ais-hits>
           </ais-instant-search>
-        </v-card-text>
-        <AisPoweredBy class="ms-auto me-4 mb-2" />
+        </v-card-text> -->
+        <!-- <AisPoweredBy class="ms-auto me-4 mb-2" /> -->
       </v-card>
     </v-dialog>
   </v-app-bar>

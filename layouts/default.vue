@@ -60,6 +60,7 @@ useSeoMeta({
   twitterSite: '',
   // twitterTitle: () => page.value?.head.title,
 });
+const drawerClicked = inject('drawerClicked');
 </script>
 
 <template>
@@ -69,6 +70,9 @@ useSeoMeta({
     <div class="d-flex flex-0-1-100 main-content">
       <SideMenu v-if="shouldShowDrawer" />
       <v-main class="pl-0 pr-0 flex-shrink-1">
+        <div v-if="drawerClicked">
+          <p>aaaaaaaaa</p>
+        </div>
         <v-container>
           <slot />
           <NavigationLink />
@@ -88,7 +92,7 @@ useSeoMeta({
 }
 
 .main-content {
-  width: 1190px;
+  max-width: 1190px !important;
   margin: 0 auto;
 }
 
