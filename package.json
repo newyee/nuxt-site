@@ -6,7 +6,7 @@
     "url": "https://github.com/newyee/nuxt-site"
   },
   "license": "SEE LICENSE IN LICENSE",
-  "author": "Sony",
+  "author": "test",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",

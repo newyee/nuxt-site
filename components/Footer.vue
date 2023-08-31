@@ -11,9 +11,7 @@
             class="primary lighten-2 py-4 text-center white--text"
             cols="12"
           >
-            <strong
-              >Copyright {{ new Date().getFullYear() }} Sony Corporation</strong
-            >
+            <strong>Copyright {{ new Date().getFullYear() }} vuetify </strong>
           </v-col>
         </v-row>
       </v-footer>
