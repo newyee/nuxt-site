@@ -15,11 +15,15 @@ import { useDisplay } from 'vuetify';
 const drawerClicked = ref(false);
 
 const handleDrawerClick = () => {
-  drawerClicked.value = !drawerClicked.value;
-  console.log('test');
+  emits('mobileDrawerClicked', !props.mobileDrawer);
+  console.log('test', !props.mobileDrawer);
 };
-
-provide('drawerClicked', drawerClicked);
+const props = defineProps<{
+  mobileDrawer: boolean;
+}>();
+const emits = defineEmits<{
+  (e: 'mobileDrawerClicked', mobileDrawer: boolean): void;
+}>();
 
 const algolia = useAlgoliaRef();
 const { locale, setLocale } = useI18n();

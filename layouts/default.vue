@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { inject } from 'vue';
 const route = useRoute();
 const { baseUrl } = useRuntimeConfig().public;
 const { locale } = useI18n();
@@ -60,17 +61,29 @@ useSeoMeta({
   twitterSite: '',
   // twitterTitle: () => page.value?.head.title,
 });
-const drawerClicked = inject('drawerClicked');
+const mobileDrawer = ref(false);
+watch(mobileDrawer, (newVal, oldVal) => {
+  console.log('mobileDrawer changed from', oldVal, 'to', newVal);
+});
+function handleMobileDrawerClicked(newValue: boolean) {
+  mobileDrawer.value = newValue;
+  console.log('変更');
+}
 </script>
 
 <template>
   <v-app>
-    <Header />
-    <ResponsiveTableOfContents v-if="mobileLayout"></ResponsiveTableOfContents>
+    <Header
+      :mobileDrawer="mobileDrawer"
+      @mobileDrawerClicked="handleMobileDrawerClicked"
+    />
+    <div v-if="mobileLayout">
+      <ResponsiveTableOfContents></ResponsiveTableOfContents>
+    </div>
     <div class="d-flex flex-0-1-100 main-content">
       <SideMenu v-if="shouldShowDrawer" />
       <v-main class="pl-0 pr-0 flex-shrink-1">
-        <div v-if="drawerClicked">
+        <div v-if="mobileDrawer">
           <p>aaaaaaaaa</p>
         </div>
         <v-container>
