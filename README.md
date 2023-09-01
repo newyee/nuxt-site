@@ -35,3 +35,7 @@ npm run generate
 ```
 npm run preview
 ```
+
+## Hosted on Netlify
+
+https://document-driven-demo.netlify.app/ja/getting-started/introduction/
