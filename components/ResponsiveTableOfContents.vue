@@ -51,14 +51,19 @@ onMounted(async () => {
     (item: { props: { id: any } }) => item.props.id
   );
 });
+const tocContents = ref(false);
+function openList() {
+  tocContents.value = !tocContents.value;
+  console.log('test', tocContents.value);
+}
 </script>
 
 <template>
-  <v-menu location="bottom">
-    <template v-slot:activator="{ props }">
-      <button v-bind="props" class="mt-16 pt-3">Table of Contents</button>
-    </template>
-    <v-list>
+  <div class="toc-contents-block">
+    <div class="toc-title" @click="openList">
+      <p>table of contents</p>
+    </div>
+    <v-list v-if="tocContents">
       <v-list-item>
         <div class="ml-6 green">
           <nuxt-link
@@ -72,14 +77,20 @@ onMounted(async () => {
         </div>
       </v-list-item>
     </v-list>
-  </v-menu>
+  </div>
 </template>
 
 <style scoped lang="scss">
+.toc-contents-block {
+  position: sticky;
+}
 .toc-contents {
   color: $color-gray-100;
 }
 .visible {
   color: $color-toc-text-visible;
+}
+.toc-title {
+  margin-top: 5rem;
 }
 </style>
