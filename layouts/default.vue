@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject } from 'vue';
+
 const route = useRoute();
 const { baseUrl } = useRuntimeConfig().public;
 const { locale } = useI18n();
@@ -14,6 +15,7 @@ const handleResize = () => {
 onMounted(() => {
   window.addEventListener('resize', handleResize);
   handleResize();
+  console.log('mobileLayout', mobileLayout.value);
 });
 
 onUnmounted(() => {
@@ -77,12 +79,15 @@ function handleMobileDrawerClicked(newValue: boolean) {
       :mobileDrawer="mobileDrawer"
       @mobileDrawerClicked="handleMobileDrawerClicked"
     />
-    <div v-if="mobileLayout">
+    <div class="responsive-toc-wrapper" v-if="mobileLayout">
       <ResponsiveTableOfContents></ResponsiveTableOfContents>
     </div>
     <div class="d-flex flex-0-1-100 main-content">
       <SideMenu v-if="shouldShowDrawer" />
-      <v-main class="pl-0 pr-0 flex-shrink-1">
+      <v-main
+        class="pl-0 pr-0 flex-shrink-1"
+        :class="{ 'v-main-border': !mobileLayout }"
+      >
         <div v-if="mobileDrawer">
           <p>aaaaaaaaa</p>
         </div>
@@ -99,7 +104,7 @@ function handleMobileDrawerClicked(newValue: boolean) {
 <style lang="scss">
 .test {
 }
-.v-main {
+.v-main-border {
   border-left: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
 }
@@ -112,8 +117,23 @@ function handleMobileDrawerClicked(newValue: boolean) {
 video {
   width: 100%;
 }
+// headerの背景色はresponsive-toc-wrapperのbackground-colorに設定されている
 header {
   width: 100%;
+  backdrop-filter: saturate(200%) blur(20px);
+}
+@media (max-width: 1023px) {
+  header {
+    background: none !important;
+  }
+}
+.responsive-toc-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fffc !important;
+  backdrop-filter: saturate(200%) blur(20px);
+  border-bottom: 1px solid #e0e0e0;
 }
 footer {
   width: 100%;

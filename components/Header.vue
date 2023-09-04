@@ -172,3 +172,4 @@ function onDocumentKeydown(e: KeyboardEvent) {
     </v-dialog>
   </v-app-bar>
 </template>
+<style lang="scss"></style>

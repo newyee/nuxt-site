@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { computed } from 'vue';
 import { useLayout } from 'vuetify';
+import { mdiChevronRight, mdiChevronDown } from '@mdi/js';
 
 const { mainStyles } = useLayout();
 // const marginTop = mainStyles.value['--v-layout-top'];
@@ -60,8 +61,12 @@ function openList() {
 
 <template>
   <div class="toc-contents-block">
-    <div class="toc-title" @click="openList">
-      <p>table of contents</p>
+    <div class="toc-title pb-4" @click="openList">
+      <p>
+        Table of Contents
+        <v-icon v-if="!tocContents" :icon="mdiChevronRight" />
+        <v-icon v-else :icon="mdiChevronDown" />
+      </p>
     </div>
     <v-list v-if="tocContents">
       <v-list-item>
@@ -81,8 +86,8 @@ function openList() {
 </template>
 
 <style scoped lang="scss">
-.toc-contents-block {
-  position: sticky;
+.v-list {
+  background: none !important;
 }
 .toc-contents {
   color: $color-gray-100;
@@ -92,5 +97,6 @@ function openList() {
 }
 .toc-title {
   margin-top: 5rem;
+  margin-left: 1.5rem;
 }
 </style>
