@@ -89,7 +89,7 @@ function onDocumentKeydown(e: KeyboardEvent) {
 </script>
 
 <template>
-  <v-app-bar border="b" flat>
+  <v-app-bar flat>
     <v-app-bar-nav-icon
       variant="text"
       v-if="shouldShowDrawer"
@@ -147,29 +147,18 @@ function onDocumentKeydown(e: KeyboardEvent) {
           class="flex-grow-0"
           variant="filled"
         />
-
-        <!-- <v-card-text class="pa-4">
-          <ais-instant-search
-            :search-client="algolia"
-            :search-function="searchFunction"
-            :index-name="indexName"
-          >
-            <ais-configure :hitsPerPage="50" :query="searchString" />
-
-            <ais-hits v-slot="{ items }">
-              <template v-for="(item, index) in items">
-                <v-list>
-                  <v-list-item :to="item.url" :key="index">
-                    {{ item.title }}
-                  </v-list-item>
-                </v-list>
-              </template>
-            </ais-hits>
-          </ais-instant-search>
-        </v-card-text> -->
-        <!-- <AisPoweredBy class="ms-auto me-4 mb-2" /> -->
       </v-card>
     </v-dialog>
   </v-app-bar>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+.header-border {
+  border-top: 1px solid #e0e0e0;
+  margin-top: 1px;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  right: 0;
+  top: 62px;
+}
+</style>

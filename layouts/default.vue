@@ -74,52 +74,55 @@ function handleMobileDrawerClicked(newValue: boolean) {
 </script>
 
 <template>
-  <v-app>
-    <Header
-      :mobileDrawer="mobileDrawer"
-      @mobileDrawerClicked="handleMobileDrawerClicked"
-    />
-    <div class="responsive-toc-wrapper" v-if="mobileLayout">
-      <ResponsiveTableOfContents></ResponsiveTableOfContents>
-    </div>
-    <div class="d-flex flex-0-1-100 main-content">
-      <SideMenu v-if="shouldShowDrawer" />
-      <v-main
-        class="pl-0 pr-0 flex-shrink-1"
-        :class="{ 'v-main-border': !mobileLayout }"
-      >
-        <div v-if="mobileDrawer">
-          <p>aaaaaaaaa</p>
-        </div>
-        <v-container>
-          <slot />
-          <NavigationLink />
-        </v-container>
-      </v-main>
-      <TableofContents v-if="shouldShowDrawer" />
-    </div>
-    <Footer />
-  </v-app>
+  <div id="app">
+    <v-app>
+      <Header
+        :mobileDrawer="mobileDrawer"
+        @mobileDrawerClicked="handleMobileDrawerClicked"
+      />
+      <div class="header-border"></div>
+
+      <div class="responsive-toc-wrapper" v-if="mobileLayout">
+        <ResponsiveTableOfContents></ResponsiveTableOfContents>
+      </div>
+      <div class="d-flex flex-0-1-100">
+        <SideMenu v-if="shouldShowDrawer" />
+        <v-main
+          class="pl-0 pr-0 flex-shrink-1"
+          :class="{ 'v-main-border': !mobileLayout }"
+        >
+          <div v-if="mobileDrawer">
+            <ResponsiveSideMenu></ResponsiveSideMenu>
+          </div>
+          <v-container>
+            <slot />
+            <NavigationLink />
+          </v-container>
+        </v-main>
+        <TableofContents v-if="shouldShowDrawer" />
+      </div>
+      <div class="footer-border"></div>
+      <Footer />
+    </v-app>
+  </div>
 </template>
 <style lang="scss">
+#app {
+  max-width: 1190px !important;
+  margin: 0 auto !important;
+}
 .test {
 }
 .v-main-border {
-  border-left: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
+  border-left: 1px solid $border-color-gray;
+  border-right: 1px solid $border-color-gray;
 }
-
-.main-content {
-  max-width: 1190px !important;
-  margin: 0 auto;
-}
-
 video {
   width: 100%;
 }
 // headerの背景色はresponsive-toc-wrapperのbackground-colorに設定されている
 header {
-  width: 100%;
+  position: sticky !important;
   backdrop-filter: saturate(200%) blur(20px);
 }
 @media (max-width: 1023px) {
@@ -131,11 +134,17 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #fffc !important;
+  background-color: $bg-color-white !important;
   backdrop-filter: saturate(200%) blur(20px);
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid $border-color-gray;
 }
-footer {
-  width: 100%;
+.footer-border {
+  border-top: 1px solid #e0e0e0;
+  margin-top: 1px;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  right: 0;
+  bottom: 127px;
 }
 </style>

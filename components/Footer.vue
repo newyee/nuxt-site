@@ -20,6 +20,6 @@
 </template>
 <style lang="scss">
 .footer-container {
-  border-top: 1px solid $footer-border-color; /* ボーダーのスタイルと色を指定 */
+  // border-top: 1px solid $footer-border-color; /* ボーダーのスタイルと色を指定 */
 }
 </style>

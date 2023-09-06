@@ -31,7 +31,7 @@ const panel = matchedNavObject.children.findIndex((item: { _path: string }) =>
       permanent
       border="none"
       class="position-sticky"
-      :style="{ maxHeight, marginTop, minWidth }"
+      :style="{ maxHeight, minWidth }"
       style="height: fit-content"
       width="250"
     >

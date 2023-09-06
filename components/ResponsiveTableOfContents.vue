@@ -60,8 +60,8 @@ function openList() {
 </script>
 
 <template>
-  <div class="toc-contents-block">
-    <div class="toc-title pb-4" @click="openList">
+  <div class="toc-contents-block" @click="openList">
+    <div class="toc-title pb-4">
       <p>
         Table of Contents
         <v-icon v-if="!tocContents" :icon="mdiChevronRight" />
@@ -86,6 +86,13 @@ function openList() {
 </template>
 
 <style scoped lang="scss">
+.toc-contents-block {
+  cursor: pointer;
+  padding-top: 5rem;
+}
+.v-icon {
+  margin-bottom: 2px;
+}
 .v-list {
   background: none !important;
 }
@@ -96,7 +103,6 @@ function openList() {
   color: $color-toc-text-visible;
 }
 .toc-title {
-  margin-top: 5rem;
   margin-left: 1.5rem;
 }
 </style>
