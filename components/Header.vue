@@ -152,13 +152,14 @@ function onDocumentKeydown(e: KeyboardEvent) {
   </v-app-bar>
 </template>
 <style lang="scss">
-.header-border {
-  border-top: 1px solid #e0e0e0;
-  margin-top: 1px;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  right: 0;
-  top: 62px;
+.v-app-bar::after {
+  content: '';
+  display: block;
+  border-bottom: 1px solid #e0e0e0;
+  width: 200%;
+  margin-left: -50%;
+}
+.v-app-bar {
+  overflow: visible !important;
 }
 </style>

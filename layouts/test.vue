@@ -1,23 +1,59 @@
 <template>
-  <v-item-group selected-class="bg-primary">
-    <v-container>
-      <v-row>
-        <v-col v-for="n in 3" :key="n" cols="12" md="4">
-          <v-item v-slot="{ isSelected, selectedClass, toggle }">
-            <v-card
-              :class="['d-flex align-center', selectedClass]"
-              dark
-              height="200"
-              @click="toggle"
-            >
-              <div class="text-h3 flex-grow-1 text-center">
-                {{ isSelected ? 'Selected' : 'Click Me!' }}
-              </div>
-            </v-card>
-          </v-item>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-item-group>
+  <v-card class="" width="300">
+    <v-list v-model:opened="open" open-strategy="multiple">
+      <v-list-item :prepend-icon="mdiClose"></v-list-item>
+
+      <v-list-group value="Admin">
+        <template v-slot:activator="{ props }">
+          <v-list-item v-bind="props" title="Admin"></v-list-item>
+        </template>
+
+        <v-list-item
+          v-for="([title], i) in admins"
+          :key="i"
+          :title="title"
+          :value="title"
+          color="blue"
+        ></v-list-item>
+      </v-list-group>
+
+      <v-list-group value="Actions">
+        <template v-slot:activator="{ props }">
+          <v-list-item v-bind="props" title="Actions"></v-list-item>
+        </template>
+
+        <v-list-item
+          v-for="([title, icon], i) in cruds"
+          :key="i"
+          :value="title"
+          :title="title"
+          :prepend-icon="icon"
+        ></v-list-item>
+      </v-list-group>
+    </v-list>
+  </v-card>
 </template>
-<script></script>
+<script setup>
+import { mdiClose, mdiAccountMultipleOutline } from '@mdi/js';
+
+const open = ref(['Admin']);
+
+const admins = [
+  ['Management', 'mdi-account-multiple-outline'],
+  ['Settings', 'mdi-cog-outline'],
+];
+
+const cruds = [
+  ['Create', 'mdi-plus-outline'],
+  ['Read', 'mdi-file-outline'],
+  ['Update', 'mdi-update'],
+  ['Delete', 'mdi-delete'],
+];
+</script>
+<style scoped>
+.custom-active {
+  color: red;
+  background-color: none;
+  /* Add any other desired styles for active items here */
+}
+</style>

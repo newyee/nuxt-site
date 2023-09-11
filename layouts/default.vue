@@ -138,13 +138,4 @@ header {
   backdrop-filter: saturate(200%) blur(20px);
   border-bottom: 1px solid $border-color-gray;
 }
-.footer-border {
-  border-top: 1px solid #e0e0e0;
-  margin-top: 1px;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  right: 0;
-  bottom: 127px;
-}
 </style>

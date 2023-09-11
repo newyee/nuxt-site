@@ -22,4 +22,11 @@
 .footer-container {
   // border-top: 1px solid $footer-border-color; /* ボーダーのスタイルと色を指定 */
 }
+.footer-container::before {
+  content: '';
+  display: block;
+  border-top: 1px solid #e0e0e0;
+  width: 200%;
+  margin-left: -50%;
+}
 </style>
