@@ -151,4 +151,7 @@ header {
   backdrop-filter: saturate(200%) blur(20px);
   border-bottom: 1px solid $border-color-gray;
 }
+.v-navigation-drawer {
+  z-index: 0 !important;
+}
 </style>
