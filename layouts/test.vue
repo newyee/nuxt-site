@@ -1,5 +1,5 @@
 <template>
-  <v-card class="" width="300">
+  <v-card class="" width="300" height="100vh" rounded="0" elevation="5">
     <v-list v-model:opened="open" open-strategy="multiple">
       <v-list-item :prepend-icon="mdiClose"></v-list-item>
 
