@@ -89,69 +89,72 @@ function onDocumentKeydown(e: KeyboardEvent) {
 </script>
 
 <template>
-  <v-app-bar flat>
-    <v-app-bar-nav-icon
-      variant="text"
-      v-if="shouldShowDrawer"
-      @click="handleDrawerClick()"
-    ></v-app-bar-nav-icon>
-    <AppThemeToggle />
-    <AppLanguageMenu />
-    <v-dialog
-      v-model="searchModalIsVisible"
-      height="700"
-      scrollable
-      width="500"
-    >
-      <template #activator="{ props: activatorProps }">
-        <AppBtn
-          :active="searchModalIsVisible"
-          :icon="xs ? mdiMagnify : undefined"
-          :prepend-icon="smAndUp ? mdiMagnify : undefined"
-          v-bind="activatorProps"
-        >
-          <span :class="mdAndUp && 'me-n1'">
-            <span v-if="smAndUp">Search</span>
-            <span
-              :class="[
-                smAndDown ? 'border-opacity-0' : 'py-1 px-2 ms-2',
-                'border rounded text-disabled text-caption',
-              ]"
-            >
-              <span v-if="mdAndUp">CTRL+K </span>
+  <v-app-bar flat border="b">
+    <v-container>
+      <v-app-bar-nav-icon
+        variant="text"
+        v-if="shouldShowDrawer"
+        @click="handleDrawerClick()"
+      ></v-app-bar-nav-icon>
+      <AppThemeToggle />
+      <AppLanguageMenu />
+      <v-dialog
+        v-model="searchModalIsVisible"
+        height="700"
+        scrollable
+        width="500"
+      >
+        <template #activator="{ props: activatorProps }">
+          <AppBtn
+            :active="searchModalIsVisible"
+            :icon="xs ? mdiMagnify : undefined"
+            :prepend-icon="smAndUp ? mdiMagnify : undefined"
+            v-bind="activatorProps"
+          >
+            <span :class="mdAndUp && 'me-n1'">
+              <span v-if="smAndUp">Search</span>
+              <span
+                :class="[
+                  smAndDown ? 'border-opacity-0' : 'py-1 px-2 ms-2',
+                  'border rounded text-disabled text-caption',
+                ]"
+              >
+                <span v-if="mdAndUp">CTRL+K </span>
+              </span>
             </span>
-          </span>
-        </AppBtn>
-      </template>
+          </AppBtn>
+        </template>
 
-      <v-card height="100%">
-        <v-toolbar color="primary" class="ps-3 pe-4">
-          <v-icon :icon="mdiMagnify" size="x-large" />
+        <v-card height="100%">
+          <v-toolbar color="primary" class="ps-3 pe-4">
+            <v-icon :icon="mdiMagnify" size="x-large" />
 
-          <v-toolbar-title class="ms-2"> Vuetify </v-toolbar-title>
+            <v-toolbar-title class="ms-2"> Vuetify </v-toolbar-title>
 
-          <v-spacer />
+            <v-spacer />
 
-          <v-btn
-            class="me-n2"
-            :icon="mdiClose"
-            size="x-small"
-            variant="text"
-            @click="searchModalIsVisible = false"
+            <v-btn
+              class="me-n2"
+              :icon="mdiClose"
+              size="x-small"
+              variant="text"
+              @click="searchModalIsVisible = false"
+            />
+          </v-toolbar>
+
+          <AppTextField
+            v-model="searchString"
+            :placeholder="`search.looking...`"
+            class="flex-grow-0"
+            variant="filled"
           />
-        </v-toolbar>
-
-        <AppTextField
-          v-model="searchString"
-          :placeholder="`search.looking...`"
-          class="flex-grow-0"
-          variant="filled"
-        />
-      </v-card>
-    </v-dialog>
+        </v-card>
+      </v-dialog>
+    </v-container>
   </v-app-bar>
 </template>
 <style lang="scss">
-.test {
+.v-container {
+  // max-width: 1190px !important;
 }
 </style>

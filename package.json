@@ -22,6 +22,7 @@
     "@nuxtjs/algolia": "^1.8.0",
     "@nuxtjs/i18n": "^8.0.0-beta.12",
     "algoliasearch": "^4.18.0",
+    "click-outside-vue3": "^4.0.1",
     "nuxt": "^3.5.3",
     "vue-instantsearch": "^4.10.4",
     "vuetify": "^3.3.3"

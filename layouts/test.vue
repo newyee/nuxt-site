@@ -1,5 +1,12 @@
 <template>
-  <v-card class="" width="300" height="100vh" rounded="0" elevation="5">
+  <v-card
+    class=""
+    width="300"
+    height="100vh"
+    rounded="0"
+    elevation="5"
+    v-click-outside="test"
+  >
     <v-list v-model:opened="open" open-strategy="multiple">
       <v-list-item :prepend-icon="mdiClose"></v-list-item>
 
@@ -35,6 +42,9 @@
 </template>
 <script setup>
 import { mdiClose, mdiAccountMultipleOutline } from '@mdi/js';
+function test() {
+  console.log('aaaaaaaaaaaaaaaaaaaaaa');
+}
 
 const open = ref(['Admin']);
 

@@ -1,94 +1,70 @@
-<script setup lang="ts">
-import { computed } from 'vue';
-import { useLayout } from 'vuetify';
-import { mdiChevronDown } from '@mdi/js';
-
-const { mainStyles } = useLayout();
-const marginTop = mainStyles.value['--v-layout-top'];
-const maxHeight = computed(
-  () => `calc(100vh - ${mainStyles.value['--v-layout-top']})`
-);
-const minWidth = '250px';
-const route = useRoute();
-const { navigation } = useContent();
-const { baseUrl } = useRuntimeConfig().public;
-const matchedNavObject = navigation.value.find(
-  (navObject: { _path: string }) =>
-    navObject._path === `/${route.params.slug[0]}`
-);
-const isPathMatched = (path: string, itemPath: string): boolean => {
-  // パスの末尾を除いて比較するため、route.pathから末尾のスラッシュを取り除く
-  const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
-  return normalizedPath.includes(itemPath);
-};
-
-const panel = matchedNavObject.children.findIndex((item: { _path: string }) =>
-  isPathMatched(route.path, item._path)
-);
-</script>
 <template>
-  <v-card class="mobile-navigation-menu">
-    <v-list dense>
-      <v-item-group>
-        <v-list-item v-for="(item, i) in matchedNavObject.children" :key="i">
-          <v-list-item-content>
-            <v-list-item-title class="menu-title">{{
-              item.title
-            }}</v-list-item-title>
-          </v-list-item-content>
+  <v-card
+    class=""
+    width="300"
+    height="100vh"
+    rounded="0"
+    elevation="5"
+    v-click-outside="closeSideMenu"
+  >
+    <v-list v-model:opened="open" open-strategy="multiple">
+      <v-list-item :prepend-icon="mdiClose"></v-list-item>
 
-          <v-list-item-action>
-            <v-icon class="menu-icon" :icon="mdiChevronDown" />
-          </v-list-item-action>
+      <v-list-group value="Admin">
+        <template v-slot:activator="{ props }">
+          <v-list-item v-bind="props" title="Admin"></v-list-item>
+        </template>
 
-          <v-expand-transition>
-            <v-list-group
-              no-action
-              sub-group
-              v-model="item.expanded"
-              :prepend-icon="
-                item.expanded ? 'mdi-chevron-up' : 'mdi-chevron-down'
-              "
-              class="submenu-group"
-            >
-              <v-list-item
-                v-for="(navItem, j) in item.children"
-                :key="j"
-                @click="navigateTo(navItem._path)"
-                :class="{ active: `${navItem._path}/` === route.path }"
-              >
-                {{ navItem.title }}
-              </v-list-item>
-            </v-list-group>
-          </v-expand-transition>
-        </v-list-item>
-      </v-item-group>
+        <v-list-item
+          v-for="([title], i) in admins"
+          :key="i"
+          :title="title"
+          :value="title"
+          color="blue"
+        ></v-list-item>
+      </v-list-group>
+
+      <v-list-group value="Actions">
+        <template v-slot:activator="{ props }">
+          <v-list-item v-bind="props" title="Actions"></v-list-item>
+        </template>
+
+        <v-list-item
+          v-for="([title, icon], i) in cruds"
+          :key="i"
+          :value="title"
+          :title="title"
+          :prepend-icon="icon"
+        ></v-list-item>
+      </v-list-group>
     </v-list>
   </v-card>
 </template>
+<script setup>
+import { mdiClose, mdiAccountMultipleOutline } from '@mdi/js';
 
-<style scoped lang="scss">
-.mobile-navigation-menu {
-  width: 250px;
+function closeSideMenu() {
+  console.log('bbbbbbbbbbbbbbbbbbbbbbbbb');
 }
 
-.menu-title {
-  cursor: pointer;
-}
+const open = ref(['Admin']);
 
-.menu-icon {
-  cursor: pointer;
-}
+const admins = [
+  ['Management', 'mdi-account-multiple-outline'],
+  ['Settings', 'mdi-cog-outline'],
+];
 
-.submenu-group {
-  padding-left: 16px;
-}
-
-.active {
-  background-color: $color-blue;
-  color: $color-white;
-  font-weight: bold;
-  border-radius: 4px;
-  padding: 4px 8px;
+const cruds = [
+  ['Create', 'mdi-plus-outline'],
+  ['Read', 'mdi-file-outline'],
+  ['Update', 'mdi-update'],
+  ['Delete', 'mdi-delete'],
+];
+</script>
+<style scoped>
+.custom-active {
+  color: red;
+  background-color: none;
+  /* Add any other desired styles for active items here */
 }
 </style>

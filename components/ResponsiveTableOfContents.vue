@@ -88,7 +88,7 @@ function openList() {
 <style scoped lang="scss">
 .toc-contents-block {
   cursor: pointer;
-  padding-top: 5rem;
+  padding-top: 1rem;
 }
 .v-icon {
   margin-bottom: 2px;
