@@ -113,18 +113,14 @@ export default defineNuxtConfig({
   },
   hooks: {
     'vite:extendConfig': (config) => {
-      config.plugins!.push(vuetify());
+      config.plugins!.push(
+        vuetify({
+          styles: {
+            configFile: 'assets/main.scss',
+          },
+        })
+      );
     },
-    // 'prerender:routes': (context) => {
-    //   // context.routesは対象URLのSet
-    //   for (const path of [...context.routes]) {
-    //     // 200.htmlや404.htmlは無視する
-    //     if (!path.endsWith('.html') && path !== '/') {
-    //       context.routes.delete(path);
-    //       context.routes.add(`${path}/`);
-    //     }
-    //   }
-    // },
   },
   runtimeConfig: {
     public: {
