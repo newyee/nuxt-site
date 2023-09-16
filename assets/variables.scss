@@ -1,0 +1,28 @@
+// 標準フォントをRobotoとNoto Sans JPに指定する
+$body-font-family: Roboto, 'Noto Sans JP', sans-serif;
+$container-max-width: 1190px;
+$container-max-widths: (
+  'md': 1190px,
+  'lg': 1190px,
+  'xl': 600px,
+  'xxl': 600px,
+);
+
+@use 'vuetify/lib/styles/main.sass' with (
+  $body-font-family: $body-font-family,
+  $container-max-widths: (
+    'md': 600px,
+    'lg': 600px,
+    'xl': 600px,
+    'xxl': 600px,
+  )
+);
+
+// 等幅フォントもmonospace指定だとMSゴシックになる環境が多くダサいので変える
+// InconsolataとNoto Sans JPはASCII文字と日本語文字の幅がちょうど1:2になる
+code,
+kbd,
+pre,
+samp {
+  font-family: 'Inconsolata', 'Noto Sans JP', monospace;
+}

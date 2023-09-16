@@ -107,24 +107,21 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['assets/main.scss'],
+  css: ['assets/settings.scss'],
   build: {
     transpile: ['vuetify'],
   },
   hooks: {
     'vite:extendConfig': (config) => {
-      config.plugins!.push(vuetify());
+      config.plugins!.push(
+        vuetify({
+          autoImport: true,
+          styles: {
+            configFile: 'assets/settings.scss',
+          },
+        })
+      );
     },
-    // 'prerender:routes': (context) => {
-    //   // context.routesは対象URLのSet
-    //   for (const path of [...context.routes]) {
-    //     // 200.htmlや404.htmlは無視する
-    //     if (!path.endsWith('.html') && path !== '/') {
-    //       context.routes.delete(path);
-    //       context.routes.add(`${path}/`);
-    //     }
-    //   }
-    // },
   },
   runtimeConfig: {
     public: {
