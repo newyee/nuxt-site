@@ -107,7 +107,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['assets/main.scss'],
+  css: ['assets/settings.scss'],
   build: {
     transpile: ['vuetify'],
   },
@@ -115,8 +115,9 @@ export default defineNuxtConfig({
     'vite:extendConfig': (config) => {
       config.plugins!.push(
         vuetify({
+          autoImport: true,
           styles: {
-            configFile: 'assets/main.scss',
+            configFile: 'assets/settings.scss',
           },
         })
       );
