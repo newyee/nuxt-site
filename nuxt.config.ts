@@ -1,5 +1,4 @@
 import vuetify from 'vite-plugin-vuetify';
-import { resolve } from 'pathe';
 import fs from 'fs';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -20,18 +19,6 @@ export default defineNuxtConfig({
     ],
   ],
   content: {
-    // sources: {
-    //   v1: {
-    //     prefix: '/en',
-    //     driver: 'fs',
-    //     base: resolve(__dirname, 'content/en'),
-    //   },
-    //   vja: {
-    //     prefix: '/ja',
-    //     driver: 'fs',
-    //     base: resolve(__dirname, 'content/ja'),
-    //   },
-    // },
     highlight: {
       // コードハイライトを有効化する場合はテーマを設定
       theme: 'github-dark-dimmed',
@@ -47,12 +34,6 @@ export default defineNuxtConfig({
     defaultLocale: 'ja',
     langDir: 'lang/',
     strategy: 'no_prefix',
-    // vueI18n: './config/vue-i18n.options.ts',
-    // detectBrowserLanguage: {
-    //   useCookie: true,
-    //   cookieKey: 'i18n_redirected',
-    //   redirectOn: 'root',  // recommended
-    // }
   },
 
   nitro: {
@@ -130,11 +111,11 @@ export default defineNuxtConfig({
   },
   vite: {
     css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: '@use "@/assets/variables.scss" as *;',
-        },
-      },
+      // preprocessorOptions: {
+      //   scss: {
+      //     additionalData: '@use "@/assets/scss/_variables.scss" as *;',
+      //   },
+      // },
     },
     ssr: {
       noExternal: ['vuetify'],
