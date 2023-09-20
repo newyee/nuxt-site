@@ -103,11 +103,6 @@ function handleMobileDrawerClicked(newValue: boolean) {
   </v-app>
 </template>
 <style lang="scss">
-// .v-container {
-//   margin: 0 auto !important;
-//   padding: 0 !important;
-// }
-
 .v-main-border {
   border-left: 1px solid $border-color-gray;
   border-right: 1px solid $border-color-gray;

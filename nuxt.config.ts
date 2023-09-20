@@ -107,7 +107,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['assets/settings.scss'],
+  css: ['assets/main.scss'],
   build: {
     transpile: ['vuetify'],
   },
@@ -117,7 +117,7 @@ export default defineNuxtConfig({
         vuetify({
           autoImport: true,
           styles: {
-            configFile: 'assets/settings.scss',
+            configFile: 'assets/vuetify-settings.scss',
           },
         })
       );
@@ -132,7 +132,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@/assets/scss/_variables.scss" as *;',
+          additionalData: '@use "@/assets/variables.scss" as *;',
         },
       },
     },
