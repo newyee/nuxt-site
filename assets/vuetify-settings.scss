@@ -10,12 +10,3 @@ $body-font-family: Roboto, 'Noto Sans JP', sans-serif;
     'xxl': 1190px,
   )
 );
-
-// 等幅フォントもmonospace指定だとMSゴシックになる環境が多くダサいので変える
-// InconsolataとNoto Sans JPはASCII文字と日本語文字の幅がちょうど1:2になる
-code,
-kbd,
-pre,
-samp {
-  font-family: 'Inconsolata', 'Noto Sans JP', monospace;
-}

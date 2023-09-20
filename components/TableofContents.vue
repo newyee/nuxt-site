@@ -35,7 +35,9 @@ const checkElementVisibility = () => {
 let changePath = '';
 onMounted(async () => {
   // 初期表示時にチェック
-  checkElementVisibility();
+  setTimeout(() => {
+    checkElementVisibility();
+  }, 1000);
   // スクロール時にチェック
   window.addEventListener('scroll', checkElementVisibility);
   if (path.path !== '/' && path.path.endsWith('/')) {
