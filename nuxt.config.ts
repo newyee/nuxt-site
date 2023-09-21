@@ -88,7 +88,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['assets/main.scss'],
+  css: ['@/assets/main.scss'],
   build: {
     transpile: ['vuetify'],
   },
@@ -109,13 +109,14 @@ export default defineNuxtConfig({
       baseUrl: process.env.NUXT_BASE_URL,
     },
   },
+
   vite: {
     css: {
-      // preprocessorOptions: {
-      //   scss: {
-      //     additionalData: '@use "@/assets/scss/_variables.scss" as *;',
-      //   },
-      // },
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/variables.scss" as *;',
+        },
+      },
     },
     ssr: {
       noExternal: ['vuetify'],

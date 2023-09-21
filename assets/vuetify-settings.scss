@@ -1,7 +1,7 @@
 // 標準フォントをRobotoとNoto Sans JPに指定する
 $body-font-family: Roboto, 'Noto Sans JP', sans-serif;
 
-@use 'vuetify/lib/styles/main.sass' with (
+@use 'vuetify/settings' with (
   $body-font-family: $body-font-family,
   $container-max-widths: (
     'md': 1190px,
