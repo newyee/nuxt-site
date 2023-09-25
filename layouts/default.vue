@@ -1,27 +1,13 @@
 <script setup lang="ts">
-import { inject } from 'vue';
-
 const route = useRoute();
 const { baseUrl } = useRuntimeConfig().public;
 const { locale } = useI18n();
 const shouldShowDrawer = ref(false);
 const mobileLayout = ref(false);
-
 const handleResize = () => {
   shouldShowDrawer.value = window.innerWidth >= 1023;
   mobileLayout.value = window.innerWidth <= 1023;
 };
-
-onMounted(() => {
-  window.addEventListener('resize', handleResize);
-  handleResize();
-  console.log('mobileLayout', mobileLayout.value);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', handleResize);
-});
-
 let redirectPath = route.path.endsWith('/')
   ? route.path.slice(0, -1)
   : route.path;
@@ -31,14 +17,29 @@ if (redirectPath.startsWith('/en')) {
 } else if (redirectPath.startsWith('/ja')) {
   locale.value = 'ja';
 }
-
+const isPageReady = ref(false);
 if (process.client) {
+  isPageReady.value = true;
   switch (redirectPath) {
     case '':
       navigateTo(redirectPath + '/ja', { replace: true });
       break;
   }
 }
+
+console.log('hogehogehohgoehgoegheohge');
+// if (process.client) {
+//   test.value = true;
+// }
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+  handleResize();
+  console.log('mobileLayout', mobileLayout.value);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
 
 let ogLocale = '';
 if (redirectPath.startsWith('/ja')) {
@@ -74,7 +75,7 @@ function handleMobileDrawerClicked(newValue: boolean) {
 </script>
 
 <template>
-  <v-app>
+  <v-app v-if="isPageReady">
     <div v-if="mobileDrawer" class="responsive-side-menu-wrapper">
       <ResponsiveSideMenu></ResponsiveSideMenu>
     </div>
